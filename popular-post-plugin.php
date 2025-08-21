@@ -8,7 +8,7 @@ Text Domain: popular-posts-plugin
 */
 
 // Query popular posts
-function ppp_get_popular_posts($number = 5) {
+function popular_posts($number = 5) {
     $args = array(
         'post_type'      => 'post',
         'posts_per_page' => $number,
@@ -21,12 +21,12 @@ function ppp_get_popular_posts($number = 5) {
 }
 
 // Shortcode to display popular posts
-function ppp_popular_posts_shortcode($atts) {
+function popular_posts_shortcode($atts) {
     $atts = shortcode_atts(array(
         'number' => 5
     ), $atts, 'popular_posts');
 
-    $query = ppp_get_popular_posts($atts['number']);
+    $query = popular_posts($atts['number']);
     $output = '<ul class="ppp-popular-posts">';
 
     if ($query->have_posts()) {
@@ -44,4 +44,4 @@ function ppp_popular_posts_shortcode($atts) {
 
     return $output;
 }
-add_shortcode('popular_posts', 'ppp_popular_posts_shortcode');
+add_shortcode('popular_posts', 'popular_posts_shortcode');
